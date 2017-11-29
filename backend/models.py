@@ -1,20 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
-# class Usuario(models.Model):
-#     nome = models.CharField('nome', max_length=50)
-#     email = models.EmailField('email',max_length=50)
-#     senha = models.CharField('senha',max_length=30)
-
 class Estado(models.Model):
     nome = models.CharField('nome', max_length=50)
     uf = models.CharField('uf', max_length=2)
 
     def __str__(self):
         return self.nome
-
 class Cidade(models.Model):
     nome = models.CharField('nome', max_length=50)
     estado = models.ForeignKey(Estado)
@@ -34,9 +26,9 @@ class Pessoa(models.Model):
     nome = models.CharField('nome', max_length=100)
     sexo = models.CharField('sexo', max_length=1)
     dataNascimento = models.DateField()
-    endereco = models.ForeignKey(Endereco,null=True)
+    endereco = models.ForeignKey(Endereco)
     imagem = models.ImageField()
-    usuario = models.ForeignKey(User,null=True,blank=True)
+    usuario = models.ForeignKey(User)
 
 class PessoaFisica(Pessoa):
     cpf = models.CharField('cpf', max_length=14)
